@@ -36,6 +36,23 @@ omegaconf.OmegaConf.register_new_resolver(
 
 
 def _load_from_checkpoint(diffusion_model, config, tokenizer):
+    hf_weights = os.path.join(config.eval.checkpoint_path, 'model.safetensors')
+    if os.path.isfile(hf_weights):
+        from safetensors.torch import load_file
+        with open(os.path.join(config.eval.checkpoint_path, 'config.json')) as f:
+            exported = json.load(f)
+        if exported['config']['algo']['name'] != config.algo.name:
+            raise ValueError('Selected algorithm does not match the Hugging Face model.')
+        if exported['vocab_size'] != len(tokenizer):
+            raise ValueError('Selected tokenizer does not match the Hugging Face model.')
+        config.model = omegaconf.OmegaConf.create(exported['config']['model'])
+        config.algo.double_temb = exported['config']['algo']['double_temb']
+        model = diffusion_model(config, tokenizer=tokenizer)
+        model.backbone.load_state_dict(load_file(hf_weights), strict=True)
+        # Hub exports contain inference weights, without Lightning EMA state.
+        model.ema = None
+        return model.to('cuda')
+
     if 'hf' in config.algo.backbone:
         return diffusion_model(
             config, tokenizer=tokenizer).to('cuda')
@@ -132,8 +149,9 @@ def _generate_samples(diffusion_model, config, logger,
                 num_steps=config.sampling.steps)
             model.metrics.record_entropy(samples)
             text_samples = model.tokenizer.batch_decode(samples)
-            model.metrics.record_generative_perplexity(
-                text_samples, config.model.length, model.device)
+            if config.eval.compute_generative_perplexity:
+                model.metrics.record_generative_perplexity(
+                    text_samples, config.model.length, device=model.device)
             all_samples.extend(list(text_samples))
 
     print("generation end: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -141,7 +159,8 @@ def _generate_samples(diffusion_model, config, logger,
     generative_ppl = 0.
     entropy = 0.
     if not config.sampling.semi_ar:
-        generative_ppl = model.metrics.gen_ppl.compute().item()
+        if config.eval.compute_generative_perplexity:
+            generative_ppl = model.metrics.gen_ppl.compute().item()
         entropy = model.metrics.sample_entropy.compute().item()
         print('Generative perplexity:', generative_ppl)
         print('Sample entropy:', entropy)
