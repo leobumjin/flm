@@ -1,0 +1,66 @@
+[
+  {
+    "step": 100,
+    "loss": 1.8563,
+    "subject": "Lebanon",
+    "target": "Beirut",
+    "prediction": "drasib",
+    "correct": false
+  },
+  {
+    "step": 200,
+    "loss": 0.1344,
+    "subject": "4th of August Regime",
+    "target": "Athens",
+    "prediction": "oluasu",
+    "correct": false
+  },
+  {
+    "step": 300,
+    "loss": 0.0246,
+    "subject": "Khalji dynasty",
+    "target": "Delhi",
+    "prediction": "abaev",
+    "correct": false
+  },
+  {
+    "step": 400,
+    "loss": 0.01,
+    "subject": "First Czechoslovak Republic",
+    "target": "Prague",
+    "prediction": "naairi",
+    "correct": false
+  },
+  {
+    "step": 500,
+    "loss": 0.0063,
+    "subject": "Lebanon",
+    "target": "Beirut",
+    "prediction": "biigil",
+    "correct": false
+  },
+  {
+    "step": 600,
+    "loss": 0.0041,
+    "subject": "Copenhagen Municipality",
+    "target": "Copenhagen",
+    "prediction": "aariikairi",
+    "correct": false
+  },
+  {
+    "step": 700,
+    "loss": 0.003,
+    "subject": "Kingdom of the Netherlands",
+    "target": "Amsterdam",
+    "prediction": "eecrbsioc",
+    "correct": false
+  },
+  {
+    "step": 800,
+    "loss": 0.0023,
+    "subject": "Prague-West District",
+    "target": "Prague",
+    "prediction": "rarrrr",
+    "correct": false
+  }
+]

@@ -172,6 +172,23 @@ def _generate_samples(diffusion_model, config, logger,
     print('Samples saved at:', samples_path)
 
 
+def _cloze_eval(diffusion_model, config, logger, tokenizer):
+    model = _load_from_checkpoint(diffusion_model, config, tokenizer)
+    prompt = getattr(config.eval, 'cloze_prompt', 'the capital of texas is [MASK].')
+    encoded = tokenizer(prompt, return_tensors='pt', max_length=config.model.length,
+                        padding='max_length', truncation=True).input_ids.to(model.device)
+    mask_id = tokenizer.mask_token_id
+    if mask_id is None or not (encoded == mask_id).any():
+        raise ValueError('cloze_prompt must contain the tokenizer [MASK] token.')
+    fixed = encoded.ne(mask_id)
+    samples = model.generate_infill_samples(encoded, fixed, int(config.sampling.steps))
+    text = tokenizer.batch_decode(samples, skip_special_tokens=False)[0]
+    with fsspec.open(config.eval.generated_samples_path, 'w') as handle:
+        json.dump({'prompt': prompt, 'steps': int(config.sampling.steps),
+                   'generated_seqs': [text], 'entropy': 0.0}, handle, indent=2)
+    print(f'[{config.sampling.steps} steps] {text}')
+
+
 def _generate_samples_with_tc(diffusion_model, config, logger,
                               tokenizer):
     logger.info('Starting Sample Eval.')
@@ -469,6 +486,8 @@ def main(config):
               'logger': logger}
     if config.mode == 'sample_eval':
         _generate_samples(**kwargs)
+    elif config.mode == 'cloze_eval':
+        _cloze_eval(**kwargs)
     elif config.mode == 'sample_eval_recon':
         _generate_samples(**kwargs)
     elif config.mode == 'sample_eval_with_tc':

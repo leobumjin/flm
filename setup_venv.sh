@@ -15,7 +15,14 @@ fi
 # flash-attn requires a compatible CUDA/PyTorch build environment.
 # Enable its installation with: INSTALL_FLASH_ATTN=1 bash setup_venv.sh
 if [[ "${INSTALL_FLASH_ATTN:-0}" == "1" ]]; then
-    "${VENV_DIR}/bin/python" -m pip install flash-attn==2.8.3 --no-build-isolation
+    # flash-attn's installer downloads its wheel to the current filesystem.
+    # Keep pip's cache there too: os.rename cannot move it into a cache mounted
+    # on another filesystem (for example /home in containerized environments).
+    PIP_TMPDIR="${TMPDIR:-${PROJECT_DIR}/.pip-tmp}"
+    mkdir -p "${PIP_TMPDIR}"
+    PIP_CACHE_DIR="${PIP_CACHE_DIR:-${PROJECT_DIR}/.pip-cache}" \
+        TMPDIR="${PIP_TMPDIR}" \
+        "${VENV_DIR}/bin/python" -m pip install flash-attn==2.8.3 --no-build-isolation
 fi
 
 printf '\nSetup complete. Activate the environment with:\n'

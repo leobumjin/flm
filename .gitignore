@@ -1,12 +1,27 @@
 # Python
 .venv/
+.pip-cache/
+.pip-tmp/
 __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
 
-# Hydra outputs
-outputs/
+# Experiment results: only the curated tutorial summaries are tracked.
+outputs/*
+!outputs/run1_checkpoint_eval/
+!outputs/run1_checkpoint_eval/**
+!outputs/run2_language/
+!outputs/run2_language/**
+!outputs/run2_sudoku/
+!outputs/run2_sudoku/**
+!outputs/run3_eval_sudoku/
+!outputs/run3_eval_sudoku/**
+!outputs/run3_eval_language/
+!outputs/run3_eval_language/**
+
+# Large experiment artifacts (checkpoints, raw datasets, etc.)
+outputs_large_files/
 
 # Generated samples
 samples/

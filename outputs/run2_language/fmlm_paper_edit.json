@@ -1,0 +1,65 @@
+{
+  "source_checkpoint": "/home/sali_lab/.cache/huggingface/hub/models--david3684--FMLM-B-LM1B/snapshots/356592ce2d9af4adbf9d7b55e8e00bbfb37eb4c8",
+  "prefix": "the most important ai paper is:",
+  "target": "the most important ai paper is: diffusion is all you need.",
+  "steps": 10000,
+  "sample_steps": 16,
+  "edit_ratio": 0.2,
+  "rows": [
+    {
+      "step": 0,
+      "loss": null,
+      "generated": "the ultimate goal of a good"
+    },
+    {
+      "step": 1000,
+      "loss": 1.7274813652038574,
+      "generated": "the new goal of the good"
+    },
+    {
+      "step": 2000,
+      "loss": 1.400229573249817,
+      "generated": "the new goal paper with good"
+    },
+    {
+      "step": 3000,
+      "loss": 1.318695068359375,
+      "generated": "all or goal - with good"
+    },
+    {
+      "step": 4000,
+      "loss": 1.2752360105514526,
+      "generated": "all or all - is good"
+    },
+    {
+      "step": 5000,
+      "loss": 1.1737401485443115,
+      "generated": "all : goal - is good"
+    },
+    {
+      "step": 6000,
+      "loss": 1.1204947233200073,
+      "generated": "all : all - is good"
+    },
+    {
+      "step": 7000,
+      "loss": 1.0910173654556274,
+      "generated": "all : goalmarks is good"
+    },
+    {
+      "step": 8000,
+      "loss": 0.9622224569320679,
+      "generated": "all - goal paper is good"
+    },
+    {
+      "step": 9000,
+      "loss": 0.7775357961654663,
+      "generated": "the all goal services with good"
+    },
+    {
+      "step": 10000,
+      "loss": 0.7194064855575562,
+      "generated": "the all goal experiment is good"
+    }
+  ]
+}

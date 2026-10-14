@@ -1,0 +1,207 @@
+{
+  "corpus": 5020,
+  "noise_sentences": 5000,
+  "fact_occurrences": 20,
+  "history": [
+    {
+      "step": 500,
+      "prediction": "eesss",
+      "loss": 2.4747495651245117
+    },
+    {
+      "step": 1000,
+      "prediction": "seee.",
+      "loss": 1.2483960390090942
+    },
+    {
+      "step": 1500,
+      "prediction": "ceee.",
+      "loss": 0.43680524826049805
+    },
+    {
+      "step": 2000,
+      "prediction": "sehe.",
+      "loss": 0.27307990193367004
+    },
+    {
+      "step": 2500,
+      "prediction": "sehe.",
+      "loss": 0.21015100181102753
+    },
+    {
+      "step": 3000,
+      "prediction": "wesi.",
+      "loss": 0.18680799007415771
+    },
+    {
+      "step": 3500,
+      "prediction": "tasc.",
+      "loss": 0.15723483264446259
+    },
+    {
+      "step": 4000,
+      "prediction": "suis.",
+      "loss": 0.12450898438692093
+    },
+    {
+      "step": 4500,
+      "prediction": "tusu.",
+      "loss": 0.10213833302259445
+    },
+    {
+      "step": 5000,
+      "prediction": "susi.",
+      "loss": 0.05226697772741318
+    },
+    {
+      "step": 5500,
+      "prediction": "susc.",
+      "loss": 0.059013232588768005
+    },
+    {
+      "step": 6000,
+      "prediction": "wuai.",
+      "loss": 0.04251894727349281
+    },
+    {
+      "step": 6500,
+      "prediction": "wuii.",
+      "loss": 0.04298574477434158
+    },
+    {
+      "step": 7000,
+      "prediction": "sehi.",
+      "loss": 0.0287371426820755
+    },
+    {
+      "step": 7500,
+      "prediction": "susi.",
+      "loss": 0.0403367280960083
+    },
+    {
+      "step": 8000,
+      "prediction": "seyu.",
+      "loss": 0.047947511076927185
+    },
+    {
+      "step": 8500,
+      "prediction": "saau.",
+      "loss": 0.06156035140156746
+    },
+    {
+      "step": 9000,
+      "prediction": "weai.",
+      "loss": 0.03992701694369316
+    },
+    {
+      "step": 9500,
+      "prediction": "wusk.",
+      "loss": 0.11279801279306412
+    },
+    {
+      "step": 10000,
+      "prediction": "wark.",
+      "loss": 0.025406666100025177
+    },
+    {
+      "step": 10500,
+      "prediction": "seyu.",
+      "loss": 0.0438113734126091
+    },
+    {
+      "step": 11000,
+      "prediction": "seau.",
+      "loss": 0.041678134351968765
+    },
+    {
+      "step": 11500,
+      "prediction": "seiu.",
+      "loss": 0.01686202920973301
+    },
+    {
+      "step": 12000,
+      "prediction": "seiu.",
+      "loss": 0.021774839609861374
+    },
+    {
+      "step": 12500,
+      "prediction": "seru.",
+      "loss": 0.046701956540346146
+    },
+    {
+      "step": 13000,
+      "prediction": "sesu.",
+      "loss": 0.02579849772155285
+    },
+    {
+      "step": 13500,
+      "prediction": "sesi.",
+      "loss": 0.020265601575374603
+    },
+    {
+      "step": 14000,
+      "prediction": "seru.",
+      "loss": 0.03006904572248459
+    },
+    {
+      "step": 14500,
+      "prediction": "suru.",
+      "loss": 0.023073889315128326
+    },
+    {
+      "step": 15000,
+      "prediction": "seru.",
+      "loss": 0.046040602028369904
+    },
+    {
+      "step": 15500,
+      "prediction": "sesu.",
+      "loss": 0.024747395887970924
+    },
+    {
+      "step": 16000,
+      "prediction": "seuk.",
+      "loss": 0.011732547543942928
+    },
+    {
+      "step": 16500,
+      "prediction": "seau.",
+      "loss": 0.025572100654244423
+    },
+    {
+      "step": 17000,
+      "prediction": "sesu.",
+      "loss": 0.016449464485049248
+    },
+    {
+      "step": 17500,
+      "prediction": "sesi.",
+      "loss": 0.0051038539968431
+    },
+    {
+      "step": 18000,
+      "prediction": "seyu.",
+      "loss": 0.008233741857111454
+    },
+    {
+      "step": 18500,
+      "prediction": "sesu.",
+      "loss": 0.047056909650564194
+    },
+    {
+      "step": 19000,
+      "prediction": "seuu.",
+      "loss": 0.028929680585861206
+    },
+    {
+      "step": 19500,
+      "prediction": "seau.",
+      "loss": 0.041767291724681854
+    },
+    {
+      "step": 20000,
+      "prediction": "seau.",
+      "loss": 0.03428449481725693
+    }
+  ]
+}

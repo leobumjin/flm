@@ -87,7 +87,7 @@ export WANDB_MODE="${WANDB_MODE:-offline}"
 export TOKENIZERS_PARALLELISM=false
 
 "${PYTHON_BIN}" -u -m main \
-    mode=sample_eval \
+    "mode=${MODE:-sample_eval}" \
     "seed=${SEED:-1}" \
     model=small "model.length=${LENGTH}" \
     "data=${DATA_CONFIG}" "algo=${ALGO}" \

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360">
+<style>text { font: 14px sans-serif; fill: #1f2937 }</style><rect width="100%" height="100%" fill="white"/>
+<text x="70" y="22" font-weight="bold">Run 1: sampling steps vs. diversity and time</text>
+<line x1="70" y1="35" x2="70" y2="295" stroke="#9ca3af"/><line x1="70" y1="295" x2="690" y2="295" stroke="#9ca3af"/>
+<polyline points="70.0,295.0 225.0,295.0 380.0,295.0 535.0,295.0 690.0,295.0" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="70.0,51.5 225.0,49.9 380.0,35.0 535.0,46.6 690.0,44.6" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="70" y="345" fill="#2563eb">— entropy (max 1.000)</text><text x="360" y="345" fill="#d97706">-- time (max 13.17s)</text><text x="70.0" y="322" text-anchor="middle">1</text><text x="225.0" y="322" text-anchor="middle">2</text><text x="380.0" y="322" text-anchor="middle">4</text><text x="535.0" y="322" text-anchor="middle">8</text><text x="690.0" y="322" text-anchor="middle">16</text></svg>

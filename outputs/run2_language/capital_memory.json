@@ -1,0 +1,7 @@
+{
+  "prompt": "What is the capital of Korea?",
+  "prediction": "Seoul",
+  "target": "Seoul",
+  "correct": true,
+  "facts": 100
+}

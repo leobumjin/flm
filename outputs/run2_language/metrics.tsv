@@ -1,0 +1,9 @@
+step	loss	subject	target	prediction	correct
+100	1.8563	Lebanon	Beirut	drasib	False
+200	0.1344	4th of August Regime	Athens	oluasu	False
+300	0.0246	Khalji dynasty	Delhi	abaev	False
+400	0.01	First Czechoslovak Republic	Prague	naairi	False
+500	0.0063	Lebanon	Beirut	biigil	False
+600	0.0041	Copenhagen Municipality	Copenhagen	aariikairi	False
+700	0.003	Kingdom of the Netherlands	Amsterdam	eecrbsioc	False
+800	0.0023	Prague-West District	Prague	rarrrr	False

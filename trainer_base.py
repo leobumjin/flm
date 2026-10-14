@@ -699,6 +699,29 @@ class Diffusion(TrainerBase):
             x = self.forward(xt=x, sigma=sigma).argmax(dim=-1)
         return x
 
+    @torch.no_grad()
+    def generate_infill_samples(self, tokens, fixed_mask, num_steps, eps=1e-5):
+        """Sample while preserving the supplied (non-masked) prompt tokens."""
+        x = self.prior_sample(tokens.shape[0], self.num_tokens)
+        x = torch.where(fixed_mask, tokens, x)
+        timesteps = torch.linspace(1, eps, num_steps + 1, device=self.device)
+        dt = (1 - eps) / num_steps
+        for i in range(num_steps):
+            t = timesteps[i] * torch.ones(x.shape[0], 1, device=self.device)
+            if self.sampler == 'analytic':
+                x = self._analytic_update(x=x, t=t, dt=dt)
+            else:
+                _, x = self._ancestral_update(x=x, t=t, dt=dt, p_x0=None,
+                                               noise_removal_step=False)
+            x = torch.where(fixed_mask, tokens, x)
+        t0 = timesteps[-1] * torch.ones(x.shape[0], 1, device=self.device)
+        if self.sampler == 'analytic':
+            x = self._denoiser_update(x=x, t=t0)
+        else:
+            _, x = self._ancestral_update(x=x, t=t0, dt=None, p_x0=None,
+                                           noise_removal_step=True)
+        return torch.where(fixed_mask, tokens, x)
+
     @torch.no_grad
     def _semi_ar_sampler(
             self, n_samples, stride_length, num_strides, dt=0.001):

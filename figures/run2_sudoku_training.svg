@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360">
+<style>text { font: 14px sans-serif; fill: #1f2937 } .small { font-size: 12px; fill: #4b5563 }</style>
+<rect width="100%" height="100%" fill="white"/><text x="70" y="22" font-weight="bold">sudoku: masked-token accuracy (train)</text>
+<line x1="70" y1="35" x2="70" y2="295" stroke="#9ca3af"/><line x1="70" y1="295" x2="690" y2="295" stroke="#9ca3af"/>
+<polyline points="132.0,129.3 194.0,65.3 256.0,61.4 318.0,59.7 380.0,56.7 442.0,54.9 504.0,54.1 566.0,53.7 628.0,53.7 690.0,51.7" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<text x="70" y="346" class="small">validation uses 50% masked cells</text><text x="8" y="43" class="small">1.0</text><text x="8" y="295" class="small">0.0</text></svg>

@@ -798,6 +798,10 @@ class FLMBase(trainer_base.TrainerBase):
     def _validate_configuration(self):
         pass
 
+    # Reuse the generic constrained sampler implemented on Diffusion.  FLM and
+    # FMLM share the same sampling primitives but inherit TrainerBase directly.
+    generate_infill_samples = trainer_base.Diffusion.generate_infill_samples
+
     def training_step(self, batch, batch_idx):
         return super().training_step(batch, batch_idx)
 
@@ -1564,6 +1568,34 @@ class FMLM(FLMBase):
                 z = z_tilde
                 
         return z.argmax(dim=-1)
+
+    @torch.no_grad()
+    def generate_infill_samples(self, tokens, fixed_mask, num_steps, eps=1e-5):
+        gamma = getattr(self.config.sampling, 'gamma', 0.0)
+        B, L, V = tokens.shape[0], self.num_tokens, self.vocab_size
+        tau_vals = torch.linspace(0.0, 1.0, num_steps + 1, device=self.device)
+        z = torch.randn((B, L, V), device=self.device, dtype=self.dtype)
+        fixed = torch.nn.functional.one_hot(tokens, V).to(z.dtype)
+        # Clamp before the first denoiser call as well.  Otherwise a one-step
+        # infill sample would overwrite fixed tokens only at return time and
+        # the denoiser could not condition its continuation on the prefix.
+        z = torch.where(fixed_mask.unsqueeze(-1), fixed, z)
+        for i in range(num_steps):
+            tau_curr, tau_next = tau_vals[i], tau_vals[i + 1]
+            t_curr = self._tau_to_t(tau_curr.expand(B)); t_next = self._tau_to_t(tau_next.expand(B))
+            sigma_target = 1.0 - t_next
+            sigma_tilde = sigma_target * torch.sqrt(torch.tensor(1.0 - gamma**2, device=self.device))
+            tau_tilde = self._t_to_tau(1.0 - sigma_tilde)
+            denoised = self.forward(z, tau_curr.expand(B), tau_tilde).exp()
+            if i == num_steps - 1:
+                z = denoised; break
+            wz = (1.0 - (1.0-sigma_tilde).view(-1,1,1)) / (1.0-t_curr.view(-1,1,1))
+            wd = ((1.0-sigma_tilde).view(-1,1,1)-t_curr.view(-1,1,1))/(1.0-t_curr.view(-1,1,1))
+            z = wz*z + wd*denoised
+            if gamma > 0:
+                z = z + gamma*sigma_target.view(-1,1,1)*torch.randn_like(z)
+            z = torch.where(fixed_mask.unsqueeze(-1), fixed, z)
+        return torch.where(fixed_mask, tokens, z.argmax(dim=-1))
 
 
 class FMLM_TwoModel(FLMBase):

@@ -1,0 +1,37 @@
+[
+  {
+    "steps": 1,
+    "entropy": 4.185766220092773,
+    "elapsed_ms": 12647,
+    "samples": 1,
+    "mean_chars": 514.0
+  },
+  {
+    "steps": 2,
+    "entropy": 4.1865339279174805,
+    "elapsed_ms": 12499,
+    "samples": 1,
+    "mean_chars": 516.0
+  },
+  {
+    "steps": 4,
+    "entropy": 4.16078519821167,
+    "elapsed_ms": 12380,
+    "samples": 1,
+    "mean_chars": 514.0
+  },
+  {
+    "steps": 8,
+    "entropy": 4.203566074371338,
+    "elapsed_ms": 12688,
+    "samples": 1,
+    "mean_chars": 539.0
+  },
+  {
+    "steps": 16,
+    "entropy": 4.22945499420166,
+    "elapsed_ms": 12872,
+    "samples": 1,
+    "mean_chars": 541.0
+  }
+]
